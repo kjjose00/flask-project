@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>this is my first web page</h1>
+<h1>my name is {{ uname | upper}}</h1>
+{% for topin in stuff %}
+{% if topin==45 %}
+    {{topin+100}}
+   
+    {% else %}
+{{topin}}<br>
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    {{message}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+    
+    {% endfor %}
+
+    <div class="card" style="width: 75rem;">
+     
+      <div class="card-body bg-warning">
+        <h5 class="card-title">Hello <b>{{ current_user.name }}</b> Welcome To Dash Board...</h5>
+       
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><b>User Name:</b>{{ current_user.username }}</li>
+        <li class="list-group-item"><b>Name:</b>{{ current_user.name }}</li>
+        <li class="list-group-item"><b>User Id:</b>{{ current_user.id }}</li>
+        <li class="list-group-item"><b>Email:</b>{{ current_user.email }}</li>
+        <li class="list-group-item"><b>Favorite Color:</b>{{ current_user.favorite_color }}</li>
+        <li class="list-group-item"><b>Date Joined:</b>{{ current_user.dateadded }}</li>
+      </ul>
+      <div class="card-body">
+        <a href="{{url_for('logout')}}" class="btn btn-secondary">Logout</a>
+        <a href="{{url_for('update',id=current_user.id)}}" class="btn btn-primary">Update</a>
+        <a href="{{url_for('delete',id=current_user.id)}}" class="btn btn-danger">Delete</a>
+       
+      </div>
+    </div>
+
+<!-- <h2>Hello <b>{{ current_user.name }}</b> Welcome To Dash Board...</h2>
+<h5><b>User Name:</b>{{ current_user.username }}</h5>
+<h5><b>Name:</b>{{ current_user.name }}</h5>
+<h5><b>User Id:</b>{{ current_user.id }}</h5>
+<h5><b>Email:</b>{{ current_user.email }}</h5>
+<h5><b>Favorite Color:</b>{{ current_user.favorite_color }}</h5>
+<h5><b>Date Joined:</b>{{ current_user.dateadded }}</h5>
+
+<a href="{{url_for('logout')}}" class="btn btn-secondary">Logout</a> -->
+
+
+
+
+{% endblock %}
+    
+
+
+
+
+
+
+
+    
+
+
