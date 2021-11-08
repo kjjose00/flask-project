@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime,date
 from flask_migrate import Migrate
 from wtforms.widgets import TextArea
-from flskforms import Postform,userform,NamerForm,passwordform,LoginForm
+from flskforms import Postform,userform,NamerForm,passwordform,LoginForm,SearchForm
 
 
 from werkzeug.security import generate_password_hash,check_password_hash
@@ -62,9 +62,22 @@ class users(db.Model,UserMixin):
     def __repr__(self):
 	    return '<Name %r>' % self.name
 
-  
+# pass stuff to navbar
+@app.context_processor
+def base():
+    form=SearchForm()
+    return dict(form=form)
 
-
+@app.route('/search',methods=['POST'])
+def search():
+    form=SearchForm()
+    posts=Posts.query
+    if form.validate_on_submit():
+        # print(post.searched)
+        post.searched=form.searched.data
+        posts=posts.filter(Posts.content.like("%"+post.searched+"%"))
+        posts=posts.order_by(Posts.title).all()
+        return render_template('search.html',form=form,searched=post.searched,posts=posts)
 
   
 @app.route('/login',methods=['GET','POST'])
