@@ -8,9 +8,11 @@ from flskforms import Postform,userform,NamerForm,passwordform,LoginForm,SearchF
 
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin,login_user,login_required,logout_user,current_user,LoginManager
+from flask_ckeditor import CKEditor
 
 
 app=Flask(__name__)
+ckeditor = CKEditor(app)
 # app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///users.db'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Iamwork3*@localhost/our_users'
 db=SQLAlchemy(app)

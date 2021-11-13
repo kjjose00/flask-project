@@ -35,10 +35,14 @@
         <br>
         {{form.content.label(class='form-label')}}
         {{form.content(class='form-control',rows='10')}}
+
+        
         <br>
 
         {{ form.submit( class="btn btn-secondary")}}
-        
+        {{ ckeditor.load() }}
+         {{ ckeditor.config(name='content') }}
+
     
 
 
